@@ -13,4 +13,5 @@ import java.util.List;
  */
 public interface IProdutoManager {
     List<Produto> obterTudo(); 
+    Produto obterPorId(int id);
 }

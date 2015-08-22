@@ -5,10 +5,10 @@
  */
 package br.pucpr.prog4.steamo.games;
 
+import br.pucpr.prog4.steamo.models.IProdutoManager;
 import br.pucpr.prog4.steamo.models.Produto;
 import br.pucpr.prog4.steamo.models.ProdutoManager;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -19,23 +19,20 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author guilherme.lemes
  */
-public class GamesListasServlet extends HttpServlet {
+public class ProdutoDetalheServlet extends HttpServlet {
 
-   
-
+  
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        ProdutoManager prdMag = new ProdutoManager();
+        int id = Integer.parseInt(request.getParameter("id"));
         
-        prdMag.obterTudo();
+        IProdutoManager manager = new ProdutoManager();
+        Produto produto = manager.obterPorId(id);
         
-        List<Produto> produtos;
-        produtos = prdMag.obterTudo();
-        
-        request.setAttribute("produtos", produtos);
-        RequestDispatcher rd;
-        rd = request.getRequestDispatcher("/WEB-INF/jsp/game-lista.jsp");
+        String view = "WEB-INF/jsp/produto-detalhe.jsp";
+        RequestDispatcher rd = request.getDateHeader(view);
         rd.forward(request, response);
+      
     }
 
 }

@@ -14,22 +14,24 @@ import java.util.List;
  */
 public class ProdutoManager implements IProdutoManager{
 
+    List<Produto> produtos = new ArrayList<>();
+    
     @Override
     public List<Produto> obterTudo() {
-        List<Produto> produtos = new ArrayList<>();
+        
         Produto produto1 = new Produto();
         Produto produto2 = new Produto();
         Produto produto3 = new Produto();
         
-        produto1.setNome("CSGO");
+        produto1.setNome("csgo01");
         produto1.setPreço(29.90);
         produto1.setCod(1);
         
-        produto2.setNome("ARK");
+        produto2.setNome("ark");
         produto2.setPreço(60.00);
         produto2.setCod(2);
         
-        produto3.setNome("GTA V");
+        produto3.setNome("gtav");
         produto3.setPreço(90.99);
         produto3.setCod(3);
         
@@ -39,5 +41,20 @@ public class ProdutoManager implements IProdutoManager{
         
        return produtos;
     }
+    
+    public List<Produto> obterTodos(){
+        return produtos;
+    }
+
+    @Override
+    public Produto obterPorId(int id) {
+        for (Produto produto : produtos) {
+            if (produto.getCod() == id) {
+                return produto;
+            }
+        }
+        return null;
+    }
+    
     
 }

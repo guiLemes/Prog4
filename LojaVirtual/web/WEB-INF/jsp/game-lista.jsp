@@ -3,7 +3,8 @@
     Created on : 14/08/2015, 21:00:59
     Author     : guilherme.lemes
 --%>
-
+<%@taglib prefix="c"
+          uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page import="java.util.List"%>
 <%@page import="br.pucpr.prog4.steamo.models.Produto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,22 +15,16 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
-        <%
-            List<Produto> produtos;
-            produtos = (List<Produto>) request.getAttribute("produto");
-            
-            for(Produto produto : produtos){
-        %>
-        <div>
-            <p><%=produto.getNome()%></p>
-            <a href="produto-detalhe?id=<%=produto.getCod()%>">
-            <img src="produto <%=produto.getCod()%>"/>
-            </a>
-            <p>R$ <%=produto.getPreço()%></p>
-        </div>
-            <%
-            }
-            %>
+        
+        <c:forEach var="produto"
+                   items="${produtos}">
+            <div>
+                <p>${produto.nome}
+                    <a href="produto-detalhe?id="${produto.cod}>
+                        <img src="../Imagens/${produto.nome}.jpg">
+                    </a>
+                <p>R$ ${produto.preço}</p>
+            </div>
+        </c:forEach>
         </body>
 </html>
