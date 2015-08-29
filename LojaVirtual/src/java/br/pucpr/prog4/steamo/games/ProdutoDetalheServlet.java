@@ -30,7 +30,7 @@ public class ProdutoDetalheServlet extends HttpServlet {
         Produto produto = manager.obterPorId(id);
         
         String view = "WEB-INF/jsp/produto-detalhe.jsp";
-        RequestDispatcher rd = request.getDateHeader(view);
+        RequestDispatcher rd = request.getRequestDispatcher(view);
         rd.forward(request, response);
       
     }
